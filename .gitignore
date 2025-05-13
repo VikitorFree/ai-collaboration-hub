@@ -1,0 +1,6 @@
+venv-agent/
+venv-gui/
+__pycache__/
+.env
+router.log
+virtual.log

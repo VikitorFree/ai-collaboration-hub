@@ -1,0 +1,25 @@
+# Manifest roles and rules
+meta:
+  language: cs
+  version: 1.0
+agents:
+  - name: Architect
+    role: Návrh struktury a strategie
+    model: gpt-4o
+    task_types: ["strategie"]
+    description: Navrhuje strategii, strukturu a základní směr řešení. Ideální pro výstavbu myšlenkového rámce, rozdělení úkolů nebo konceptuální návrhy.
+  - name: Critic
+    role: Kontrola a vylepšení
+    model: claude-3-5-sonnet-20240620
+    task_types: ["kritika"]
+    description: Posuzuje kvalitu návrhů, doporučuje vylepšení, identifikuje chyby nebo nejasnosti. Slouží jako oponent nebo kontrolní prvek ve workflow.
+  - name: GrokCoder
+    role: Generování kódu a vtipných odpovědí
+    model: grok-2
+    task_types: ["grok_kód"]
+    description: Generuje kód s vtipným či originálním stylem. Vhodný pro kreativní úkoly, zábavné skripty nebo uvolněnější technický obsah.
+  - name: GrokAnalyst
+    role: Pokročilá analýza a odborné odpovědi
+    model: grok-3-beta
+    task_types: ["grok_3_analýza"]
+    description: Provádí hlubší analýzu dat, textu nebo systému. Vhodný pro složitější deduktivní úkoly, vyhodnocení možností a logické rozbory.
