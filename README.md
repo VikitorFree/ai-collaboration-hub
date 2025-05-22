@@ -19,6 +19,12 @@ Robustní zpracování s retry a delšími timeouty pro pomalé odpovědi.
 
 Technologie: Python, FastAPI, Streamlit, httpx, Notion API.
 
+Nové funkce ve verzi 2:
+Automatické zpracování mezi agenty: Umožňuje zpracování úkolu postupně přes více agentů (Architect → GrokCoder → Critic) s předáváním výsledků mezi nimi.
+Možnost přidávat soubory - systém automaticky načítá TXT, PDF a obrazové soubory
+Ukládání do Notion s Conversation ID: Každý úkol je nyní ukládán do Notion databáze s unikátním Conversation ID, což usnadňuje sledování historie konverzací.
+Lepší ošetření chyb a ladění: Přidáno podrobné logování odpovědí od Notion API a robustní zpracování chyb, aby systém lépe zvládal selhání.
+
 Jak to funguje
 Systém běží na lokálním serveru s FastAPI, který komunikuje s API různých modelů. Streamlit poskytuje jednoduché grafické rozhraní, kde zadáš úkol a vybereš typ (strategie, kritika, atd.). Výsledky se ukládají do Notion databáze pro pozdější přezkoumání.
 Instalace
