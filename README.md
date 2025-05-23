@@ -1,90 +1,87 @@
-# AI Collaboration Hub
 AI Collaboration Hub
-Tento projekt je pokročilý nástroj pro spolupráci s umělou inteligencí, který využívá různé jazykové modely (OpenAI, Anthropic, xAI) k řešení úkolů jako návrh strategií, generování kódu, kontrola kvality a podrobné analýzy. Systém je postaven na FastAPI backendu, Streamlit GUI a integraci s Notion pro ukládání výsledků.
-Co jsme stvořili
+AI Collaboration HubThis project is an advanced tool for collaboration with artificial intelligence, utilizing various language models (OpenAI, Anthropic, xAI) to handle tasks such as strategy design, code generation, quality control, and detailed analysis. The system is built on a FastAPI backend, Streamlit GUI, and Notion integration for storing results.
+What We’ve Created
 
-Multi-agentní systém: Čtyři agenti (Architect, Coder, Critic, GrokCoder) a jeden analytický agent (GrokAnalyst) spolupracují na různých úkolech.
-Podporované modely:
-OpenAI GPT-4o pro strategie.
-Anthropic Claude-3-5-Sonnet-20240620 pro kontrolu a vylepšení.
-xAI Grok-2 pro vtipné generování kódu.
-xAI Grok-3-beta pro pokročilé analýzy.
-
-
-Funkce:
-Zpracování úkolů (strategie, kritika, grok_kód, grok_3_analýza).
-Ukládání výsledků do Notion databáze.
-Robustní zpracování s retry a delšími timeouty pro pomalé odpovědi.
+Multi-agent system: Four agents (Architect, Coder, Critic, GrokCoder) and one analytical agent (GrokAnalyst) collaborate on various tasks.
+Supported models:
+OpenAI GPT-4o for strategy development.
+Anthropic Claude-3-5-Sonnet-20240620 for review and improvement.
+xAI Grok-2 for humorous code generation.
+xAI Grok-3-beta for advanced analysis.
 
 
-Technologie: Python, FastAPI, Streamlit, httpx, Notion API.
 
-Nové funkce ve verzi 2:
-Automatické zpracování mezi agenty: Umožňuje zpracování úkolu postupně přes více agentů (Architect → GrokCoder → Critic) s předáváním výsledků mezi nimi.
-Možnost přidávat soubory - systém automaticky načítá TXT, PDF a obrazové soubory
-Ukládání do Notion s Conversation ID: Každý úkol je nyní ukládán do Notion databáze s unikátním Conversation ID, což usnadňuje sledování historie konverzací.
-Lepší ošetření chyb a ladění: Přidáno podrobné logování odpovědí od Notion API a robustní zpracování chyb, aby systém lépe zvládal selhání.
+Features:
 
-Jak to funguje
-Systém běží na lokálním serveru s FastAPI, který komunikuje s API různých modelů. Streamlit poskytuje jednoduché grafické rozhraní, kde zadáš úkol a vybereš typ (strategie, kritika, atd.). Výsledky se ukládají do Notion databáze pro pozdější přezkoumání.
-Instalace
+Task processing (strategy, critique, grok_kód, grok_3_analysis).
+Storage of results in a Notion database.
+Robust processing with retries and extended timeouts for slow responses.
 
-Klonuj repozitář:git clone https://github.com/VikitorFree/ai-collaboration-hub.git
+Technologies: Python, FastAPI, Streamlit, httpx, Notion API.
+
+New Features in Version 2
+
+Automated Agent Workflow: Enables task processing across multiple agents (Architect → GrokCoder → Critic) with results passed between them.
+File Upload Support: The system automatically handles TXT, PDF, and image files.
+Notion Storage with Conversation ID: Each task is now saved to the Notion database with a unique Conversation ID, simplifying conversation history tracking.
+Improved Error Handling and Debugging: Added detailed logging of Notion API responses and robust error handling for better system reliability.
+Timeout: The system handles slow responses (e.g., Grok-3-beta) with a 300-second timeout in the GUI and 300 seconds on the server.
+
+How It Works
+The system runs on a local server with FastAPI, which communicates with APIs of various models. Streamlit provides a simple graphical interface where you can input a task and select its type (strategy, critique, etc.). Results are stored in a Notion database for later review.
+Installation
+
+Clone the repository:
+git clone https://github.com/VikitorFree/ai-collaboration-hub.git
 cd ai-collaboration-hub
 
 
-Vytvoř virtuální prostředí:python -m venv venv-agent
+Create virtual environments:
+python -m venv venv-agent
 python -m venv venv-gui
 
 
-Nainstaluj závislosti:.\venv-agent\Scripts\activate
+Install dependencies:
+.\venv-agent\Scripts\activate
 pip install fastapi uvicorn httpx tenacity python-dotenv
 .\venv-gui\Scripts\activate
 pip install streamlit requests
 
 
-Nastav proměnné prostředí:
-Vytvoř .env soubor v kořenovém adresáři a přidej:
-OPENAI_API_KEY=tvůj_API_klíč
-XAI_API_KEY=tvůj_API_klíč
-ANTHROPIC_API_KEY=tvůj_API_klíč
-NOTION_API_KEY=tvůj_API_klíč
-NOTION_DATABASE_ID=tvé_database_id
+Set up environment variables:Create a .env file in the root directory and add:
+OPENAI_API_KEY=your_API_key
+XAI_API_KEY=your_API_key
+ANTHROPIC_API_KEY=your_API_key
+NOTION_API_KEY=your_API_key
+NOTION_DATABASE_ID=your_database_id
 
 
-
-
-Spusť server a GUI:
-FastAPI:.\venv-agent\Scripts\activate
+Run the server and GUI:FastAPI:
+.\venv-agent\Scripts\activate
 uvicorn main:app --reload
 
-
-Streamlit:.\venv-gui\Scripts\activate
+Streamlit:
+.\venv-gui\Scripts\activate
 streamlit run frontend/app.py
 
 
 
+Usage
 
+Open the Streamlit GUI in your browser (usually http://localhost:8501).
+Select the task type (strategy, critique, grok_kód, grok_3_analysis).
+Enter the task content (e.g., “Create 5 quiz questions”).
+Click “Submit” and wait for the result.
+Results are saved to the Notion database (check under the ID specified in .env).
 
-Použití
+Technical Details
 
-Otevři Streamlit GUI v prohlížeči (obvykle http://localhost:8501).
-Vyber typ úkolu (strategie, kritika, grok_kód, grok_3_analýza).
-Zadej obsah úkolu (např. „Vytvoř 5 otázek pro kvíz“).
-Klikni na „Odeslat“ a počkej na výsledek.
-Výsledky se uloží do Notion databáze (zkontroluj pod ID uvedeným v .env).
+Timeout: The system handles slow responses (e.g., Grok-3-beta) with a 120-second timeout in the GUI and 60 seconds on the server.
+Retry: Automatic retries for network errors (3 attempts with a 2-second delay).
+Logging: Errors and successes are recorded in router.log.
 
-Technické detaily
-
-Timeout: Systém zvládá pomalé odpovědi (např. Grok-3-beta) díky timeoutu 120 sekund v GUI a 60 sekund na serveru.
-Retry: Automatické opakování při síťových chybách (3 pokusy s 2sekundovým čekáním).
-Logování: Chyby a úspěchy jsou zaznamenávány v router.log.
-
-Příspěvky
-
-Projekt je otevřený pro příspěvky! Pokud chceš přidat nové agenty, modely nebo funkce, vytvoř pull request.
-Nahlas chyby na GitHub Issues.
-
-Licence
-MIT License – Ujisti se, že máš licenci v repozitáři.
-Happy coding a ať se daří s tvým AI hubem!
+Contributions
+The project is open to contributions! If you want to add new agents, models, or features, submit a pull request.Report issues on GitHub Issues.
+License
+MIT License – Ensure the license is included in the repository.
+Happy coding, and best of luck with your AI hub!
